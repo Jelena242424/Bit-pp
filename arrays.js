@@ -82,8 +82,8 @@ for (var i = 0; i < a.length; i++) {
 }
 
 var a = [
-    [1, 2, 1, 24], 
-    [8, 11, 9, 4], 
+    [1, 2, 1, 24],
+    [8, 11, 9, 4],
     [7, 0, 7, 27]
     ];
 
@@ -92,5 +92,45 @@ var a = [
      for (var j = 0; j < a[i].length; j++) {
          console.log(a[i][j]);
      }
- }   
+ }
+
+var a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+var sum = 0;
+
+
+for (var i = 0; i < a.length; i++) {
+    sum += a[i] * a[i];
+}
+
+console.log(sum);
+
+var grade=0;
+var students = [["David", 80],["Marko", 77],["Dany", 88],["John", 95],["Thomas", 68]];
+for (var i=0; i < students.length; i++) {
+    grade += students[i][1];
+}
+
+var average = grade/students.length;
+if (average < 60) {
+    console.log("F");
+} else if (average >= 60 && average < 70){
+    console.log("D");
+} else if (average >= 70 && average < 80){
+    console.log("C");
+} else if (average >= 80 && average < 90){
+    console.log("B");
+} else if (average >= 90 && average < 100){
+    console.log("A");
+}
+
+
+for (var i = 0; i <= 100; i++) {
+    if ((i % 3 === 0) && !(i % 5 === 0)) {
+        console.log("Fizz");
+    } else if ((i % 5 === 0) && !(i % 3 === 0)) {
+        console.log("Buzz");
+    } else {
+        console.log("FizzBuzz");
+    }
+}
 
