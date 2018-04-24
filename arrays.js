@@ -74,9 +74,9 @@ for (var i = 0; i < x.length; i++) {
 }
 console.log(string);
 
-var a = [[1,2,1,24],[8,11,9,4],[7,0,7,27]];
+var a = [[1, 2, 1, 24], [8, 11, 9, 4], [7, 0, 7, 27]];
 for (var i = 0; i < a.length; i++) {
-    for (var j=0; j < a[i].length; j++){
+    for (var j = 0; j < a[i].length; j++) {
         console.log(a[i][j]);
     }
 }
@@ -85,14 +85,14 @@ var a = [
     [1, 2, 1, 24],
     [8, 11, 9, 4],
     [7, 0, 7, 27]
-    ];
+];
 
- for (var i = 0; i < a.length; i++) {
+for (var i = 0; i < a.length; i++) {
 
-     for (var j = 0; j < a[i].length; j++) {
-         console.log(a[i][j]);
-     }
- }
+    for (var j = 0; j < a[i].length; j++) {
+        console.log(a[i][j]);
+    }
+}
 
 var a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 var sum = 0;
@@ -104,33 +104,152 @@ for (var i = 0; i < a.length; i++) {
 
 console.log(sum);
 
-var grade=0;
-var students = [["David", 80],["Marko", 77],["Dany", 88],["John", 95],["Thomas", 68]];
-for (var i=0; i < students.length; i++) {
+var grade = 0;
+var students = [["David", 80], ["Marko", 77], ["Dany", 88], ["John", 95], ["Thomas", 68]];
+for (var i = 0; i < students.length; i++) {
     grade += students[i][1];
 }
 
-var average = grade/students.length;
+var average = grade / students.length;
 if (average < 60) {
     console.log("F");
-} else if (average >= 60 && average < 70){
+} else if (average >= 60 && average < 70) {
     console.log("D");
-} else if (average >= 70 && average < 80){
+} else if (average >= 70 && average < 80) {
     console.log("C");
-} else if (average >= 80 && average < 90){
+} else if (average >= 80 && average < 90) {
     console.log("B");
-} else if (average >= 90 && average < 100){
+} else if (average >= 90 && average < 100) {
     console.log("A");
 }
 
 
 for (var i = 0; i <= 100; i++) {
-    if ((i % 3 === 0) && !(i % 5 === 0)) {
-        console.log("Fizz");
-    } else if ((i % 5 === 0) && !(i % 3 === 0)) {
-        console.log("Buzz");
+    if ((i % 3 === 0) && (i % 5 === 0)) {
+        console.log(i + " FizzBuzz");
+    } else if (i % 5 === 0) {
+        console.log(i + " Buzz");
+    } else if (i % 3 === 0) {
+        console.log(i + " Fizz");
     } else {
-        console.log("FizzBuzz");
+        console.log(i);
     }
 }
 
+var a = [5, -4.2, 3, 7];
+var e = 3.8;
+// var isContained = false;
+var message = "no";
+
+for (var i = 0; i < a.length; i++) {
+    if (e === a[i]) {
+        // isContained = true;
+        message = "yes";
+        break;
+    }
+}
+
+console.log(message);
+
+// isContained ? console.log("yes") : console.log("no");
+
+// if (isContained) {
+//     console.log("yes");
+// } else {
+//     console.log("no");
+// }
+
+var arr = [-3, 11, 5, 3.4, -8];
+
+for (var i = 0; i < arr.length; i++) {
+    if (arr[i] > 0) {
+        arr[i] *= 2
+    } 
+}
+console.log(arr);
+
+
+var a = [4, 2, -10, -1, 6];
+var min = a[0];
+var index = 0;
+
+for (var i = 1; i < a.length; i++) {
+    if (a[i]< min) {
+        min = a[i];
+        index = i;
+    }
+}
+console.log(min, index);
+
+
+
+
+
+
+
+
+var a = [4, 2, -10, -1, 6];
+var min = a[0];
+var index = 0;
+
+for (var iteration = 0; iteration < 2; iteration++) {
+    for (var i = 1; i < a.length; i++) {
+        if (a[i]< min) {
+            min = a[i];
+            index = i;
+        }
+    }
+
+    if (iteration === 1) {
+       break;
+    }
+
+    delete a[index];
+    if (index === 0) {
+        min = a[1];
+    } else {
+        min = a[0];
+    }
+}
+
+console.log(min);
+
+
+var arr = [3, 11, -5, -3, 2]
+var sum = 0;
+
+for (var i = 0; i < arr.length; i++) {
+    if (arr[i] > 0) {
+        sum += arr[i];
+    }
+}
+console.log(sum);
+
+var a = [2, 4, -2, -2, 4, 2];
+var isSymetric = true;
+for (var i = 0; i < a.length/2; i++) {
+    if (a[i] !== a[a.length-1-i]) {
+        isSymetric = false;
+        break;
+    }
+}
+
+if (isSymetric) {
+    console.log("The array is symetric")
+} else{
+    console.log("The array is not symetric")
+} 
+
+var arr1 = [4, 5, 6, 2];
+var arr2 = [3, 8, 11, 9];
+var outputArr = [];
+var m = 0;
+var k = 1;
+for (var i = 0; i < arr1.length; i++) {
+    for (var j = 0; j < arr2.length; j++) {
+        outputArr [k] = arr2 [j]
+    }
+    outputArr [m] = arr1 [i]; 
+}
+
+console.log (outputArr);
