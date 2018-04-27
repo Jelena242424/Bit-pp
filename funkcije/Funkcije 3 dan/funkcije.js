@@ -56,15 +56,14 @@ console.log(filterOutElements([NaN, 0, 15, false, -22, '', undefined, 47, null])
 // zadatak 4
 
 function reverseNumber (num){
-    var newElement="";
-    newElement += num;
-    var newNumber = num.toString();
+    var newStr="";
+   var newElement = num.toString();
 
-    for ( var i = newNumber.length; i >= 0; i--){
-            newNumber+= parseInt();
+    for ( var i = newElement.length -1; i >= 0; i--){
+            newStr += newElement[i];
         }
-
-    return newNumber;
+            var b = parseInt(newStr);
+    return b;
 }
 
 console.log(reverseNumber(12345));
