@@ -125,11 +125,10 @@ function addDot(sentence, value){
       newWord += sentence[i];
       if (i === value-1) {
           newWord += "..."
-          break;
+         break;
       }
-     
-    } 
-    return newWord;
+    }
+     return newWord;
 } 
 var number = 8;
 var word = "Jedan lep dan";
