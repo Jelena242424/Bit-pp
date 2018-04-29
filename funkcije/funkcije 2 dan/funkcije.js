@@ -117,20 +117,19 @@ var stringArray = "My random string";
 console.log(addSeparator(stringArray,dash));
 
 
-
 function addDot(sentence, value){
     var newWord = "";
-    var dot = "...";
-    for (var i = 0; i < value; i++) {
-      
-    } 
-    return newWord;
+    
+    for (var i = 0; i < sentence.length; i++) {
+      newWord += sentence[i];
+      if (i === value-1) {
+          newWord += "..."
+         break;
+      }
+    }
+     return newWord;
 } 
-
-
 var number = 8;
 var word = "Jedan lep dan";
 console.log(addDot(word, number));
-
-
 
