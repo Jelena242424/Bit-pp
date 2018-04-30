@@ -145,10 +145,74 @@ console.log(sumEvenSubtractOdd());
 // zadatak 7
 
 function twoLetterConcat(arr){
+    var output = "";
+    var word = "";
     for (var i = 0; i < arr.length; i++){
-        
+        if (typeof arr[i] === "string") {
+            word = arr[i];
+        } else {
+            continue;
+        }
+         if (word.length > 1) {
+            for (var j = 0; j < 2; j++) {
+                output += word[j];
+            }
+         }
+       
     }
+   return output;
 }
 
  var arr = [ "M", "Anne", 12, "Steve", "Joe", "John", "David", "Mark", true, "A" ];
  console.log(twoLetterConcat(arr));
+
+ // zadatak 8.
+
+ function reverse (str) {
+     var newStr = "";
+    for (var i = 1; i <= str.length; i++) {
+        newStr += str[str.length - i];
+    }
+    return newStr;
+ }
+
+ var str= "Belgrade Institute of Technology";
+ console.log(reverse(str));
+
+ // zadatak 9.
+
+ function combinations() {
+     var output = "";
+     var sum = 0;
+     for (var i = 1; i <= 7; i++) {
+         for (var j = 1; j <= 7; j++) {
+             if (i === j) { 
+                continue;
+             } 
+             output += "(" + i + "." + j + "), ";
+             sum++;
+
+             if (i === 7 && j === 6){
+                 output += "(" + i + "." + j + ").";
+                 sum++;
+             }
+         }
+     }
+     return output + " " + sum;
+     
+ }
+
+ console.log(combinations());
+
+ // zadatak 10.
+
+ function primeNumber(num) {
+     for (var i = 2; i < num; i++) {
+         if (num % i !== 0) {
+             break;
+         }
+         return false;
+     }
+     return true;
+ }
+console.log(primeNumber(7));
