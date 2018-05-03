@@ -35,32 +35,75 @@ var replace = (function (input) {
     var newstring = "";
     for (var i = 0; i < input.length; i++) {
         if (input[i] === "m" || input[i] === "M") {
-           newstring += asterix;
+            newstring += asterix;
             counter++;
         } else {
             newstring += input[i];
         }
     }
-    return newstring + ", " +  counter;
+    return newstring + ", " + counter;
 })("programMing");
 console.log(replace);
 
-var suggMail = (function (name, surname){
+var suggMail = (function (name, surname) {
     var newEmail = "";
     newEmail = name + "." + surname + "@gmail.com";
-    return newEmail; 
+    return newEmail;
 })("pera", "peric");
 console.log(suggMail);
 
 
 
-var octToDec = (function (number){
-    var newNumber = number + "";
-    var stepen = 0;
-    var sum = 0;
-    for(var i = newNumber.length -1; i >=0; i--){
-        var sum = newNumber[i] * (8 * stepen);
-        stepen++;
+function octalToDecimal() {
+
+    return function (number) {
+        return number;
+    };
+
+};
+console.log(octalToDecimal()(034));
+
+function isPassCorrect(pass, a, b) {
+
+    if (pass.length < 6) {
+        return b();
+    }
+
+    for (var i = 0; i < pass.length; i++) {
+
+        if (typeof parseInt(pass[i]) === "number") {
+            return a();
+        }
 
     }
-})
+    return b();
+};
+
+var a = function () {
+    return "Your password is cool"
+};
+var b = function () {
+    return "Your password is invalid"
+};
+console.log(isPassCorrect("abc", a, b));
+
+
+function filterArray (arr, a) {
+    return a(arr);
+}
+
+var a = function (arr) {
+    var newArr = [];
+    var j = 0;
+    for (var i = 0; i < arr.length; i++){
+        if (arr[i] % 2 !== 0) {
+            newArr[j] = arr[i];
+            j++
+        }
+    }
+    return newArr;
+    
+};
+console.log(filterArray([2,8,11,4,9,3],a));
+
+
