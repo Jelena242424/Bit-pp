@@ -3,7 +3,7 @@ var jelena = {
     age: 21,
     job: "archaeologyst",
     interests: ["read", "design", "shopping"],
-    handMade: function (){
+    handMade: function () {
         console.log(jelena.name + " likes to make jewelery.")
     },
     havefun: function () {
@@ -24,13 +24,13 @@ console.log(jelena);
 var person = {
     name: "Marko",
     age: 48,
-    job:"engineer",
+    job: "engineer",
     interests: ['sports', 'movies', 'cars'],
-    run: function (){
-      console.log(person.name + ' occasionaly running!')
+    run: function () {
+        console.log(person.name + ' occasionaly running!')
     },
-    haveFun: function (){
-        console.log(person.name+ ' have fun: ' + person.interests)
+    haveFun: function () {
+        console.log(person.name + ' have fun: ' + person.interests)
     }
 }
 
@@ -78,7 +78,7 @@ console.log(movie);
 
 // zadatak 3
 
-function makeProgram (description, programmingLanguage, gitRepository, bool){
+function makeProgram(description, programmingLanguage, gitRepository, bool) {
     var program = {};
     program.description = description;
     program.programmingLanguage = programmingLanguage;
@@ -89,7 +89,7 @@ function makeProgram (description, programmingLanguage, gitRepository, bool){
         console.log(program.gitRepository);
     };
 
-    program.isJS = function (programmingLanguage){
+    program.isJS = function (programmingLanguage) {
         if (program.programmingLanguage === "JS") {
             console.log(true);
         } else {
@@ -100,7 +100,7 @@ function makeProgram (description, programmingLanguage, gitRepository, bool){
     program.isCompletted = function (bool) {
         if (program.boolean) {
             console.log(true);
-        } else { 
+        } else {
             console.log(false);
         }
     };
@@ -114,3 +114,38 @@ var phpProgram = makeProgram("frontend", "PHP", "markonyck", true);
 jsProgram.printRepository();
 
 //zadatak 4
+function makeRecipe(name, type, complexity, ingredients, time, instruction) {
+    var recipe = {};
+    recipe.name = name;
+    recipe.type = type;
+    recipe.complexity = complexity;
+    recipe.ingredients = ingredients;
+    recipe.time = time;
+    recipe.instruction = instruction;
+    recipe.printIngredients = function () {
+        return (recipe.ingredients);
+    };
+    recipe.checkTime = function () {
+        return recipe.time <= 15;
+    };
+    recipe.changeType = function (type) {
+        recipe.type = type;
+    };
+    recipe.deleteIngredient = function (ingredient) {
+        for (var i = 0; i < recipe.ingredients.length; i++) {
+            if (recipe.ingredients[i] === ingredient) {
+                delete recipe.ingredients[i];
+            }
+        }
+        return recipe.ingredients;
+    };
+
+    return recipe;
+}
+var recipe = makeRecipe("Pasta", "Italian", 2, ["onion", "meat", "salt", "tomato", "basil"], 14, "Cut onion and mix with meat and tomato.");
+console.log(recipe);
+console.log(recipe.printIngredients());
+console.log(recipe.checkTime());
+recipe.changeType("Greek");
+recipe.deleteIngredient("onion");
+console.log(recipe);
