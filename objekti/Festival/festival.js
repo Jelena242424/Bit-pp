@@ -10,9 +10,7 @@
             var lastLetter = this.name[name.length - 1].toUpperCase();
             var genreCode = firstLetter + lastLetter;
             return genreCode + "";
-
         };
-
     }
 
     function Movie(title, genre, length) {
@@ -23,7 +21,7 @@
         this.genre = genre;
         this.length = length;
         this.getData = function () {
-            return this.title + ": " + this.length + ", " + genre.getData();
+            return "\t" + this.title + ": " + this.length + ", " + genre.getData() + "\n";
         }
     }
 
@@ -34,7 +32,7 @@
 
         this.addMovie = function (movie) {
             this.numOfMovies++;
-            return this.listOfMovies.push(movie);
+            this.listOfMovies.push(movie);
         }
 
         this.lengthAllMovies = function () {
@@ -42,11 +40,11 @@
             this.listOfMovies.forEach(function (movie) {
                 lengthAllMovies += parseFloat(movie.length);
             });
-            return lengthAllMovies;
+            return lengthAllMovies + "min";
         }
 
         this.moviesData = function () {
-            var movieData = [];
+            var movieData = "";
             this.listOfMovies.forEach(function (movie) {
                 movieData += movie.getData();
 
@@ -55,7 +53,7 @@
         }
 
         this.getData = function () {
-            return this.date + " program duration " + this.lengthAllMovies() + "\n \t" + this.moviesData() + " n";
+            return this.date.toUTCString() + " program duration " + this.lengthAllMovies() + "\n" + this.moviesData();
         }
     }
 
@@ -69,9 +67,9 @@
         }
 
         this.festivalData = function () {
-            var festivalData = [];
+            var festivalData = "";
             this.listOfPrograms.forEach(function(program) {
-                festivalData += program.getData();
+                festivalData += program.getData() + "\n";
             });
             return festivalData;
         }
@@ -80,7 +78,7 @@
             return this.name + " has " + this.numOfAllMovies + " movies titles \n" + this.festivalData();
         }
     }
-
+    
     function createMovie (nameStr, genreStr, length){
         var genre = new Genre(genreStr)
         return new Movie(nameStr, genre, length);
@@ -90,17 +88,39 @@
         return new Program(date);
     };
 
+   
+    var festival = new Festival("Summer Fest");
+    var oscars = createProgram("08 14 2018");
+    var cartoons = createProgram("08 16 2018");
+    var starWars = createMovie("Star Wars", "SF", "205"); 
+    var covenant = createMovie("Covenant", "horror SF", "195");
+    var frozen = createMovie("Frozen", "kids", "100");
+    var vajana = createMovie("Vajana", "kids", "95");
+    oscars.addMovie(starWars);
+    oscars.addMovie(covenant);
+    cartoons.addMovie(frozen);
+    cartoons.addMovie(vajana);
+    festival.addProgram(oscars);
+    festival.addProgram(cartoons);
+    console.log(festival.getData());
 
+    
 
-    // var action = new Genre("action");
+    
+    
+    
+  
+})();
+
+// var action = new Genre("action");
     // var drama = new Genre("drama");
     // var kids = new Genre("kids");
     // var sf = new Genre("scien fiction");
 
     //var revenant = new Movie("Revenent", drama, "200min");
-    var revenant = createMovie("Revenent", "drama", "200min");
+    //var revenant = createMovie("Revenent", "drama", "200min");
     //var frozen = new Movie("Frozen", kids, '100min');
-    console.log(revenant);
+    //console.log(revenant);
     //var oscarMovies = new Program('06 22 2018');
     //oscarMovies.addMovie(revenant);
     // console.log(oscarMovies.getData());
@@ -114,17 +134,15 @@
 
     // console.log(cartoons.getData());
 
-    var summerFest = new Festival('summerFest');
-    summerFest.addProgram(oscarMovies);
-    summerFest.addProgram(cartoons);
+    //
+    //summerFest.addProgram(oscarMovies);
+    //summerFest.addProgram(cartoons);
     //console.log(summerFest.getData());
 
-    var starWars = new Movie("Star Wars", action, "180");
-    var covenant = new Movie("Star Wars", action, "180");
-    var newProgram = new createProgram("08 18 2018");
-    //console.log(newMovie);
+    //var starWars = new Movie("Star Wars", action, "180");
+    //var covenant = new Movie("Star Wars", action, "180");
+    //var newProgram = new createProgram("08 18 2018");
     //console.log(newProgram);
-
 
 
     // console.log(action);
@@ -135,5 +153,3 @@
     // console.log(summerFest.listOfPrograms);
     // console.log(summerFest.numOfAllMovies);
     // console.log(summerFest.lengthAllMovies);
-
-})();

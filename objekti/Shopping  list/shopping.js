@@ -38,6 +38,9 @@
         }
 
         this.getMostExpensive = function () {
+            if (this.productList === 0) {
+                return "Shopping bag is empty";
+            } 
            var sortedProducts = this.productList.slice();
            sortedProducts.sort(function(currentProduct, nextProduct) {
                return currentProduct.price - nextProduct.price
@@ -46,7 +49,7 @@
            return expensiveProduct.getInfo();
         };
 
-        this.totalPrice = function () {
+        this.getTotalPrice = function () {
             var sumProductPrice = 0;
             this.productList.forEach(function(product) {
                  sumProductPrice += product.price;
@@ -55,11 +58,41 @@
         }
     }
 
+    function PaymentCard (accountBalance, validUntilDate) {
+        this.balance = parseFloat(accountBalance.toFixed(2));
+        this.validUntilDate = new Date(validUntilDate);
+        this.status = this.validUntilDate > new Date();
+    };
+
+    function checkoutAndBuy (shoppingBag, paymentCard) {
+        if (!paymentCard.status) {
+            return "Your credit card is incative"
+        }
+        var accountBalance = paymentCard.balance;
+        var totalAccount = shoppingBag.getTotalPrice();
+        var isShoppingVallid = accountBalance >= totalAccount;
+
+        if (isShoppingVallid) {
+            var newAccountBalance = accountBalance - totalAccount;
+            shoppingBag.productList = [];
+            return "You succefuly buy your items!";
+
+        } else {
+            var needMoney = totalAccount - accountBalance;
+            
+            return "You need " + needMoney + " to buy all staff!";
+        }
+
+       
+
+    }
+
     var mango = new Product("mango", 801.55, "8 9 2018");
     var kiwi = new Product("Kiwi", 200.85, "1 1 2018");
     var banana = new Product("banana", 123.23, '1 1 2019');
     var lemon = new Product("limun", 900, "1 1 2019");
     var jeleninShoping = new ShoppingBag();
+    var creditCard = new PaymentCard(2300.55, "08 12 2018");
 
     console.log(banana.getInfo());
     jeleninShoping.addProduct(mango);
@@ -67,7 +100,9 @@
     jeleninShoping.addProduct(banana);
     jeleninShoping.addProduct(lemon);
     jeleninShoping.averagePrice();
-    console.log(jeleninShoping.averagePrice());
-    console.log(jeleninShoping.getMostExpensive());
-    console.log(jeleninShoping.totalPrice());
+    //console.log(jeleninShoping.averagePrice());
+    //console.log(jeleninShoping.getMostExpensive());
+    //console.log(jeleninShoping.totalPrice());
+    console.log(checkoutAndBuy(jeleninShoping, creditCard));
+    
 })();
