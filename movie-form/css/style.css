@@ -1,0 +1,37 @@
+
+* {
+    box-sizing: border-box;
+}
+h1 {
+    text-align: center;
+}
+
+form {
+    width: 60%;
+    display: block;
+    margin: 0 auto;
+}
+.movie-title,
+.movie-length,
+.movie-genre {
+    display: block;
+    margin-bottom: 5px;
+    width: 100%;
+    padding: 5px 10px;
+}
+
+.movie-genre {
+    outline: none;
+    background-color: rgb(240, 234, 234);
+    height: 30px;
+}
+
+input[type=button] {
+    width: 100%;
+    background-color: rgb(26, 219, 155);
+    height: 30px;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    color: white;
+}
