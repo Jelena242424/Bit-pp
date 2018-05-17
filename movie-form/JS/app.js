@@ -17,19 +17,19 @@ Movie.prototype.getData = function () {
 
 function Program(date) {
     this.date = new Date(date);
-    this.numOfMovies = allMovies.length;
     this.movieList= [];
 }
 
 Program.prototype.getData = function () {
-    return this.date.toUTCString();
+    return this.date.getDate() + "." + this.date.getMonth() + "." + this.date.getFullYear() + ".";
 }
 
 Program.prototype.calculateTotalMovieLength = function () {
     var totalMovieLength = 0;
-    this.allMovies.forEach(function (movie) {
-        totalMovieLength += movie.duration;
-    })
+    this.movieList.forEach(function (movie) {
+        totalMovieLength += parseInt(movie.duration);
+    });
+    return totalMovieLength;
 }
 
 Program.prototype.addMovie = function (movie) {
@@ -73,18 +73,12 @@ function createProgram() {
     var program = new Program(date);
     allPrograms.push(program);
 
-    var programsUlElement = document.querySelector(".program-list");
-    var programsLiElement = document.createElement("li");
-    var text = document.createTextNode(program.getData());
+    printText();
+
     var text1 = document.createTextNode(program.getData());
     var newSelect = document.querySelector("#program-in-program");
     var newOption = document.createElement("option");
     newOption.setAttribute("value", allPrograms.length - 1);
-
-
-    programsLiElement.appendChild(text);
-    programsUlElement.appendChild(programsLiElement);
-
     newOption.appendChild(text1);
     newSelect.appendChild(newOption);
     dateInput.value = "";
@@ -103,15 +97,35 @@ function addMovieToProgram() {
     var chosenMovie = allMovies[movieInProgram];
     var chosenProgram = allPrograms[programInProgram];
     chosenProgram.addMovie(chosenMovie);
-    console.log(chosenProgram);
-    
-    var festivalUl = document.querySelector(".festival-list");
-    var festivalLi = document.createElement("li");
-    var festivalText = document.createTextNode(test);
-    festivalLi.appendChild(festivalText);
-    festivalUl.appendChild(festivalLi);
-    chosenProgram.getData();
+    printText();
 }
 
 var addMtoP = document.querySelector(".add-movie-program");
 addMtoP.onclick = addMovieToProgram;
+
+function printText (){
+    var programsUlElement = document.querySelector(".program-list");
+
+    programsUlElement.innerHTML = "";
+    
+    allPrograms.forEach(function(singleProgram) {
+        console.log(singleProgram);
+        var programsLiElement = document.createElement("li");
+        var text = singleProgram.getData();
+
+        if (singleProgram.movieList.length > 0) {
+            text += singleProgram.movieList.length + " movies,"
+        }
+
+        var totalMovieLength = singleProgram.calculateTotalMovieLength();
+
+        if(totalMovieLength > 0) {
+            text += " duration: " + totalMovieLength + "min";
+        } else {
+            text += " program duration: TBA";
+        }
+
+        programsLiElement.appendChild(document.createTextNode(text));
+        programsUlElement.appendChild(programsLiElement);
+    });
+}
