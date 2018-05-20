@@ -4,6 +4,7 @@ var addButton = document.querySelector(".add");
 addButton.addEventListener("click", initialize);
 var allExams = [];
 
+
 function initialize() {
     var subjectInput = document.querySelector("#subject");
     var subject = subjectInput.value;
@@ -50,12 +51,36 @@ function initialize() {
     allExams.forEach(function (element) {
         if (element.hasPassed()) {
             var passedLi = document.createElement("li");
-            passedLi.textContent = element.student.name + " " + element.student.surname + " " + element.grade;
+            passedLi.textContent = element.student.name + " " + element.student.surname;
+
+            var iks = document.createElement("span");
+            iks.classList.add("iks");
+            iks.textContent = "X";
+            passedLi.appendChild(iks);
+
+            var passedGrade = document.createElement("span");
+            passedGrade.classList.add("passed-grade");
+            passedGrade.textContent = element.grade;
+
+            passedLi.appendChild(passedGrade);
+
             passedUl.appendChild(passedLi);
             passed++;
         } else {
             var failedLi = document.createElement("li");
-            failedLi.textContent = element.student.name + " " + element.student.surname + " " + element.grade;
+            failedLi.textContent = element.student.name + " " + element.student.surname;
+
+            var iks = document.createElement("span");
+            iks.classList.add("iksRed");
+            iks.textContent = "X";
+            failedLi.appendChild(iks);
+            
+            var failedGrade = document.createElement("span");
+            failedGrade.classList.add("failed-grade");
+            failedGrade.textContent = element.grade;
+
+            failedLi.appendChild(failedGrade);
+
             failedUl.appendChild(failedLi);
             failed++;
         }
@@ -81,6 +106,7 @@ function initialize() {
     var totalStudent = document.querySelector(".total-student");
     totalStudent.textContent = allExams.length;
 }
+
 
 
 

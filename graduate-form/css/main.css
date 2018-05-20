@@ -149,3 +149,36 @@ section {
     min-height: 20px;
     list-style-type: none;
 }
+ li {
+     position: relative;
+ }
+
+ li:hover .iks,
+ li:hover .iksRed {
+    width: auto;
+    padding-left: 10px;
+    transition: padding-left 0.5s;
+ }
+
+.passed-grade,
+.iks {
+    float: right;
+    color: rgb(121, 121, 238);
+    margin-left: 5px;
+    
+}
+
+
+.iks,
+.iksRed {
+    width: 0;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.failed-grade,
+.iksRed {
+    float: right;
+    color: rgb(238, 65, 65);
+    margin-left: 5px;
+}
