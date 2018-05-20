@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/main.css">
+    <title>Student grade</title>
+</head>
+
+<body>
+    <header>
+        <h1>Exam statistic June</h1>
+        <h2>Total students: <span class="total-student"></span></h2>
+        <div class="passed-header">
+            <span>Passed</span>
+            <span class="pass-percent"></span>
+            <span class="pass-number"></span>
+            
+        </div>
+        <div class="failed-header">
+            <span>Failed</span>
+            <span class="failed-percent"></span>
+            <span class="failed-number"></span>
+            
+        </div>
+    </header>
+    <main>
+        <div class="main-top">
+        <div class="form-wrapper">
+            <p class="error-alert"></p>
+            <select name="subject" id="subject" required>
+                <option value="web">Web</option>
+                <option value="javascript">JavaScript</option>
+                <option value="spa">SPA</option>
+            </select>
+            <input type="text" value="" class="nameSurname" placeholder="Name surname" required>
+            <input type="number" value="" class="grade" required>
+            <input type="submit" value="ADD" class="add">
+        </div>
+    </div>
+        <section>
+            <div class="passed-list">
+                <p class="passed-list__passed">PASSED</p>
+                <hr>
+                <ul class="passed-list-student-list">
+                </ul>
+                <hr>
+            </div>
+            <div class="failed-list">
+                <p class="failed-list__failed">FAILED</p>
+                <hr>
+                <ul class="failed-list-student-list">
+                </ul>
+                <hr>
+            </div>
+        </section>
+    </main>
+    <script src="./JS/student.js"></script>
+    <script src="./JS/subject.js"></script>
+    <script src="./JS/exam.js"></script>
+    <script src="./JS/form.js"></script>
+    <script src="./JS/app.js"></script>
+</body>
+
+</html>
