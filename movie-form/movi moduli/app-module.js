@@ -1,124 +1,73 @@
 "use strict"
 //3 samoizvrsavajuce funkcije, ne primaju paramere, osim poslednje, vracaju objekte
 
-var dataModule = (function () {
+var dataMovie = (function(){
 
-     var listOfMovies = [];
-
-    function Movie(title, genre, length) {
-
-        this.title = title;
-        this.genre = genre;
-        this.length = length;
-
+    var data= {
+        movieList : []
     }
 
-    Movie.prototype.getMovieData = function () {
-        var output = this.title + ", " + this.genre + ", " + this.length;
-
-       return  output;
+    var makeMovie = function MakeMovie (title, duration, genre){
+        this.title= title;
+        this.duration= duration;
+        this.genre= genre;
     }
 
-    var createMovie = function (title, genre, length) {
-
-        var createdMovie = new Movie(title, genre, length);
-
-        return createdMovie;
+    makeMovie.prototype.getData = function() {
+        return this.title + " " + this.duration + " " + this.genre;
     }
 
-   
+    var addMovie = function addMovie(movieData) {
+        var movie = new makeMovie (movieData.title, movieData.duration, movieData.genre);
+        data.movieList.push(movie);
+        return movie;
+    }
 
 
     return {
-        createMovie: createMovie,
-        
+        addMovie : addMovie
     }
+})();
 
-})()
+var uiMovie = (function(){
 
-
-var uiModule = (function () {
-
-   
-
-    function collectFormData() {
-
+    function getFormData() {
         var titleElement = document.querySelector(".movie-title");
-        var genreElement = document.querySelector(".movie-genre");
         var lengthElement = document.querySelector(".movie-length");
-
+        var genreElement = document.querySelector(".movie-genre");
+ 
         var title = titleElement.value;
+        var duration = parseInt(lengthElement.value);
         var genre = genreElement.value;
-        var length = lengthElement.value;
-
-
-        return {
+ 
+        var formInputData = {
             title: title,
-            genre: genre,
-            length: length
-
-        }
+            duration: duration,
+            genre: genre
+        };
+ 
+        return formInputData;
     }
-
-    
-    var validation = function (param) {
-
-        if (!title) {
-            return "Error, please enter valid title";
-        } else {
-            title = title;
-        }
+ 
+    function showMovieData(movie) {
+        var movieListElement = document.querySelector(".movie-list");
+        movieListElement.innerHTML += movie.getData() + "</br>";
     }
-
-    var addMovie = function(movie){
-
-        var listOfMovies = document.querySelector(".movie-list");
-        var newLi =document.createElement("li").textContent = getMovieData();
-        listOfMovies.appendChild(newLi);
-
-        if(!movie && movie instanceof Movie){
-            return "Error, please enter valid movie";
-        } else {
-            listOfMovies.push(movie);
-        }
-
-        return listOfMovies;
-
-    }
+  
 
     return {
-        collectFormData: collectFormData,
-        addMovie: addMovie
-
+        getFormData : getFormData,
+        showMovieData : showMovieData
     }
-})()
+})();
 
-
-var mainModule = (function (data, ui) {
-
-    document.querySelector('.add-movie').addEventListener('click', function () {
-        
-
-        //1. collect form data;
-        var movieData = ui.collectFormData();
-        console.log(movieData);
-
-        //2. validation
-
-        //3.create movie
-
-        var createMovie = data.createMovie(movieData.title, movieData.genre, movieData.length);
-
-        // update movie list, dodajemo u listu filmova;
-        var addMovie = ui.addMovie(movie);
-        // prikazati film na formi;
-
+var mainMovie = (function(data, ui) {
+    console.log(ui);
+    document.querySelector(".add-movie").addEventListener("click", function(event){
+         var uiData = ui.getFormData();
+         var movie = data.addMovie(uiData);
+         ui.showMovieData(movie);
     })
 
-    return {
-
-    }
-
-})(dataModule, uiModule);
-
+})(dataMovie, uiMovie);
 
