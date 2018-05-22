@@ -1,0 +1,154 @@
+.cf::before,
+.cf::after {
+  content: "";
+  display: table; }
+
+.cf::after {
+  clear: both; }
+
+body {
+  margin: 0;
+  padding: 0; }
+  body h1, body h3, body h5, body p {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif; }
+  body p {
+    margin: 0; }
+
+header {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(http://exam-statistics-example.bitballoon.com/img/back.png);
+  height: 350px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative; }
+  header h1 {
+    position: relative;
+    top: 20px;
+    color: white;
+    text-align: center;
+    line-height: 100px;
+    font-size: 30px; }
+  header h3 {
+    color: white;
+    text-align: center;
+    font-weight: 50;
+    font-size: 24px;
+    letter-spacing: 3px;
+    margin-bottom: 30px; }
+  header .final-count {
+    width: 40%;
+    height: 40px;
+    margin: 10px  auto; }
+    header .final-count p {
+      color: #444;
+      font-size: 15px;
+      line-height: 45px;
+      float: left;
+      padding-left: 10px; }
+    header .final-count .count {
+      float: right;
+      width: 20%; }
+    header .final-count #passed-count,
+    header .final-count #failed-count,
+    header .final-count #failed-percent {
+      color: white; }
+  header #passed {
+    background-color: #28b9b5; }
+  header #failed {
+    background-color: #FF5049; }
+
+#form {
+  border-bottom: 1px solid lightgray;
+  height: 150px; 
+  margin: 0 auto;}
+  #form form {
+    margin: 20px auto;
+    height: 60px;
+    width: 50%; }
+    #form form select, #form form button, #form form .input-div {
+      display: block;
+      float: left;
+      margin-right: 15px; }
+    #form form select {
+      color: #444;
+      font-size: 18px;
+      width: 100px;
+      border-color: lightgray;
+      height: 45px; }
+    #form form input {
+      box-sizing: border-box;
+      padding: 0;
+      color: gray;
+      padding-left: 10px;
+      border: 1px solid lightgray;
+      border-radius: 5px;
+      height: 45px; }
+    #form form .name-input {
+      width: 400px; }
+    #form form .grade-input {
+      width: 90px; }
+    #form form #add-button {
+      margin-right: 0;
+      border: none;
+      background: transparent;
+      font-size: 35px;
+      color: #28b9b5;
+      height: 45px; }
+    #form form .validation {
+      color: red; }
+    #form form .nameValidation {
+      margin-top: 5px; }
+    #form form .gradeValidation {
+      margin-top: 5px;
+      position: absolute;
+      width: 250px; }
+
+.students-lists {
+  width: 80%;
+  margin: 60px auto; }
+  .students-lists #passed-list {
+    float: left;
+    width: 40%; }
+  .students-lists #failed-list {
+    float: right;
+    width: 40%;
+    margin-right: 10px; }
+  .students-lists h5 {
+    font-size: 20px;
+    font-weight: 100; }
+  .students-lists #passed-list-title {
+    color: gray; }
+  .students-lists #failed-list-title {
+    color: #FF5049; }
+  .students-lists li {
+    list-style-type: none;
+    padding-left: 0;
+    color: gray;
+    font-size: 18px;
+    border-bottom: 1px solid #e7e7e7;
+    padding: 15px; }
+  .students-lists .span-li {
+    float: left; }
+  .students-lists .span-container {
+    float: right; }
+  .students-lists .grade-span {
+    float: left; }
+  .students-lists .btn-x {
+    font-size: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 1; }
+  .students-lists .btn-x:focus {
+    outline: none; }
+  .students-lists li:first-child {
+    border-top: 1px solid #e7e7e7; }
+  .students-lists li:nth-child(even) {
+    background-color: #f7f7f7; }
+  .students-lists .passed-span {
+    color: #28b9b5; }
+  .students-lists .failed-span {
+    color: #FF5049; }
+
+/*# sourceMappingURL=main.css.map */

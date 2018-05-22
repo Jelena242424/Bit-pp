@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Exam statistic</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <header>
+        <h1>Exam statistic
+            <span id="statistic-date"></span>
+        </h1>
+
+        <h3>Total students
+            <span id="students-count"></span>
+        </h3>
+
+        <div id="passed" class="final-count cf">
+            <p>PASSED</p>
+            <div class="count">
+                <p id="passed-count"></p>
+            </div>
+        </div>
+        <div id="failed" class="final-count cf">
+            <p>FAILED</p>
+            <div class="cf count">
+                <p id="failed-count"></p>
+                <p id="failed-percent"></p>
+            </div>
+        </div>
+    </header>
+
+    <section id="form">
+        <form class="cf">
+            <select id="choose-subject">
+                <option value="web" class="web">WEB</option>
+                <option value="JavaScript" class="js">Java script</option>
+                <option value="php" class="php">PHP</option>
+            </select>
+
+            <div class="input-div cf">
+                <input type="text" class="name-input" placeholder="Name Surname">
+                <p class="validation nameValidation"></p>
+            </div>
+            <div class="input-div cf">
+                <input type="number" class="grade-input" placeholder="Grade">
+                <p class="validation gradeValidation"></p>
+            </div>
+            <button type="button" id="add-button">
+                ADD
+            </button>
+        </form>
+    </section>
+
+    <section class="cf students-lists">
+        <div id="passed-list">
+            <h5 id="passed-list-title">PASSED</h5>
+            <ul id="passed-student-list"></ul>
+        </div>
+
+        <div id="failed-list">
+            <h5 id="failed-list-title">FAILED</h5>
+            <ul id="failed-student-list"></ul>
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="./js/app.js"></script>
+    <script>
+
+        $(mainController.init);
+
+    </script>
+</body>
+
+</html>
