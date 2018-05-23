@@ -10,7 +10,7 @@
 
     Person.prototype.getData = function () {
         this.getData = function () {
-            return this.name + " " + this.surname;
+            return `${this.name} ${this.surname}`;
         }
     };
 
@@ -28,7 +28,7 @@
     }
 
     Seat.prototype.getData = function () {
-        return this.number + ", " + this.category.toUpperCase();
+        return `${this.number}, ${this.category.toUpperCase()}`;
     }
 
     function Passenger(name, surname, number, category) {
@@ -39,11 +39,11 @@
     }
 
     Passenger.prototype.getData = function () {
-        return "\t" + this.seat.getData() + ", " + this.person.getData() + "\n";
+        return `\t  ${this.seat.getData()}, ${this.person.getData()} \n`;
     }
 
     function Flight(relationFrom, relationTo, date) {
-        this.relation = relationFrom + " - " + relationTo;
+        this.relation = `${relationFrom} - ${relationTo}`;
         this.date = new Date(date);
         this.listOfPassengers = [];
         this.numOfAllPassengers = 0;
@@ -55,7 +55,7 @@
     }
 
     Flight.prototype.passengerGetData = function (passenger) {
-        var passengerGetData = "";
+        let passengerGetData = "";
         this.listOfPassengers.forEach(function (passenger) {
             passengerGetData += passenger.getData();
         });
@@ -63,7 +63,7 @@
     }
 
     Flight.prototype.getData = function () {
-        return this.date.toUTCString() + ", " + this.relation + "\n" + this.passengerGetData();
+        return `${this.date.toUTCString()}, ${this.relation} \n ${this.passengerGetData()}`;
     };
 
     function Airport() {
@@ -78,7 +78,7 @@
     }
 
     Airport.prototype.airportGetData = function (flight) {
-        var airportGetData = "";
+        let airportGetData = "";
         this.listOfFlights.forEach(function (flight) {
             airportGetData += flight.getData();
         });
@@ -86,7 +86,7 @@
     }
 
     Airport.prototype.getData = function () {
-        return "Airport:" + this.name + ", total passengers: " + this.numOfAllPassengers + "\n" + this.airportGetData();
+        return `Airport: ${this.name}, total passengers: ${this.numOfAllPassengers} \n ${this.airportGetData()}`;
     };
 
     function createFlight(relationFrom, relationTo, date) {
@@ -95,23 +95,23 @@
 
 
 
-    //var jelena = new Person("Jelena", "Opacic");
-    //var seat = new Seat(18);
-    var jelena = new Passenger("Jelena", "Opacic", 18, "b");
-    var tihomir = new Passenger("Tihomir", "Opacic", 19, "b");
-    var hana = new Passenger("Hana", "Opacic", 20, "b");
-    var dorijan = new Passenger("Dorijan", "Opacic", 21, "b");
-    var london = createFlight("Belgrade", "London", "1 9 2018");
-    var newYork = createFlight("Belgrade", "New York", "12 25 2018");
+    //const jelena = new Person("Jelena", "Opacic");
+    //const seat = new Seat(18);
+    const jelena = new Passenger("Jelena", "Opacic", 18, "b");
+    const tihomir = new Passenger("Tihomir", "Opacic", 19, "b");
+    const hana = new Passenger("Hana", "Opacic", 20, "b");
+    const dorijan = new Passenger("Dorijan", "Opacic", 21, "b");
+    const london = createFlight("Belgrade", "London", "1 9 2018");
+    const newYork = createFlight("Belgrade", "New York", "12 25 2018");
     london.addPassenger(jelena);
     london.addPassenger(hana);
     newYork.addPassenger(tihomir);
     newYork.addPassenger(dorijan);
-    var nikolaTesla = new Airport();
+    const nikolaTesla = new Airport();
     nikolaTesla.addFlight(london);
     nikolaTesla.addFlight(newYork);
-    //var flightToLondon = new Flight("Belgrade", "London", "1 9 2018");
-    //var airport = new Airport();
+    //const flightToLondon = new Flight("Belgrade", "London", "1 9 2018");
+    //const airport = new Airport();
     //flightToLondon.addPassenger(passenger);
 
     //console.log(seat.getData());
