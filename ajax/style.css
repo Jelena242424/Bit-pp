@@ -1,0 +1,15 @@
+header{
+    width: 80%;
+    margin: 0 auto;
+}
+img {
+    width: 200px;
+}
+input{
+    float: right;
+    margin-top: 15px;
+    padding: 5px;
+    width: 300px;
+    border: 5px solid rgb(82, 234, 240);
+    border-radius: 10px;
+}
