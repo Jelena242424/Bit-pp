@@ -1,31 +1,39 @@
+$(function () {
 
+    $("#search").on('keypress', event => {
+       if (event.keyCode === 13) { //da pretrazuje cim kucam ovo mi ne treba
+            const $searchBtn = $("#search");
+            const btnValue = $searchBtn.val();
+            const address = `https://api.github.com/search/users?q=${btnValue}`;
 
-$(document).on('keypress', event => {
-    if (event.keyCode === 13) {
-        const $searchBtn = $("#search");
-        const btnValue = $searchBtn.val();
-        const address = `https://api.github.com/search/users?q=${btnValue}`;
+            const request = $.ajax({
+                url: address,
+                method: "GET"
+            });
 
-        const request = $.ajax({
-            url: address,
-            method: "GET"
-        })
+            request.done(msg => {
+                const items = msg.items;
+                const $display = $("#display");
+                //$display.html("");
+                let htmlString = "";
+                for (let i = 0; i < items.length; i++) {
+                    //var $newDiv = $() mogu da ubacim Id=[i] kada dodajem html content da bi mogla da selektujem sve elemente iz drom dovn menija i stavila im .on("click", function...da je vidim koji jej i)
 
-        request.done(msg => {
-            var items = msg.items;
-            var $display = $("#display");
-            $display.html("");
-            var htmlString = "";
-            for (var i = 0; i < items.length; i++){
-                //var $newDiv = $() 
-                htmlString += ("<div><p>" + items[i].login + "</p><img src='"+items[i].avatar_url+"'></div>");
-            }
-            $display.html(htmlString);
-        })
+                    //htmlString += (`<a id="${i}" class="dropdown-item">${items[i].login}</a><br>`);
+                     htmlString += (`<div><p> ${items[i].login} </p><img src=' ${items[i].avatar_url} '></div>`);
+                }
+                $display.html(htmlString);
+               // $('#display a').on('click', function() {
+                    // const i = $(this).attr('id');
 
-    }
+                    // const user = items[i].avatar_url;
+                    // alert(user);
+               // });
+            });
+
+        }
+
+    });
 
 });
-
-
 
