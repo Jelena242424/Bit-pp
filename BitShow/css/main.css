@@ -1,0 +1,27 @@
+* {
+  box-sizing: border-box; }
+
+.header {
+  background-color: black; }
+  .header .logo {
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    margin-top: 16px; }
+  .header #search-field {
+    margin-top: 16px; }
+
+.main-title h1 {
+  text-align: center; }
+
+.footer {
+  background-color: black;
+  justify-content: center; }
+  .footer .footer__text {
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    margin: 16px auto;
+    width: 150px; }
+
+/*# sourceMappingURL=main.css.map */

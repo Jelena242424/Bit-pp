@@ -13,3 +13,8 @@ input{
     border: 5px solid rgb(82, 234, 240);
     border-radius: 10px;
 }
+
+div {
+    float: left;
+    margin-right: 5px;
+}

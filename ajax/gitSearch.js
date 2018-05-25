@@ -31,6 +31,12 @@ $(function () {
                // });
             });
 
+            request.fail((response, textStatus) =>  {
+                alert( textStatus /*`Request failed: ${textStatus}`*/);
+                console.log(response.responseText); //response.message parsirati json
+                });
+                
+
         }
 
     });
