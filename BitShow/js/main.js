@@ -32,12 +32,12 @@ const dataModule = (function () {
         });
     };
 
-    const loadInfoPage = function (doneHandler) {
+    const fetchSingleShow = function (id, doneHandler) {
         $.ajax({
             url: "http://api.tvmaze.com/shows/" + id,
             method: "GET"
         }).done(function(show) {
-            //
+            const myShow = new Show(show.name, show.image.orignal, );
         })
     }
 
@@ -55,7 +55,7 @@ const uiModule = (function () {
         const $display = $(".display");
         let showListOnPage = "";
         for (let i = 0; i < showList.length; i++) {
-            showListOnPage += (`<div class="col-4">
+            showListOnPage += (`<div class="show-card col-4" data-id='${showList[i].id}'>
                                 <img src='${showList[i].image}'><p>${showList[i].name}<p></div>`);
 
         }
@@ -71,7 +71,14 @@ const uiModule = (function () {
 })();
 
 const mainController = (function (data, ui) {
-    // 1. load data
+    $(document).on('click', ".show-card", function () {
+        // get id
+        let idValue = $(".show-card").attr("id");
+        // set to ls
+        localStorage.setItem("id", "idValue");
+        // redirect to single page 
+    });
+
     const loadData = data.loadData(function (showLIst) {
         ui.showData(showLIst)
 
