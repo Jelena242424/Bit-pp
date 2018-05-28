@@ -1,11 +1,13 @@
 const dataModule = (function () {
 
     class Show {
-        constructor(name, image, id, summary = "") {
+        constructor(name, image, id, summary = "", premiereDate = "", endDate = "") {
             this.name = name;
             this.image = image;
             this.id = id;
-            this.summary = summary
+            this.summary = summary;
+            this.premiereDate = premiereDate;
+            this.endDate = endDate;
         }
     }
 
@@ -45,14 +47,18 @@ const dataModule = (function () {
             doneHandler(list);
         })
     };
+//http://api.tvmaze.com/shows/1?embed[]=episodes&embed[]=cast
 
     const fetchSingleShow = function (id, doneHandler) {
         $.ajax({
-            url: "http://api.tvmaze.com/shows/" + id,
+            url: "http://api.tvmaze.com/shows/" + id + "?embed[]=seasons&embed[]=cast",
             method: "GET"
         }).done(function(show) {
             const showDetail = new Show(show.name, show.image.original, show.id, show.summary);
-           
+
+            //const listOfSeasons = new Show(show._embedded.seasons);
+           // const listOfCasts = new Show();
+
             doneHandler(showDetail);
         });
 
@@ -101,7 +107,6 @@ const uiModule = (function () {
         for (let i = 0; i < showList.length; i++) {
             showListOnPage += (`<div class="show-card col-4" data-id='${showList[i].id}'>
                                 <img src='${showList[i].image}'><p>${showList[i].name}<p></div>`);
-
         }
         $display.html(showListOnPage);
     }
@@ -171,8 +176,7 @@ const mainController = (function (data, ui) {
         if (!$idValue) {
             return;
         }
-
-        // set to ls
+        // set to ls u data
         localStorage.setItem("id", $idValue);
 
         // redirect to single page
@@ -184,8 +188,6 @@ const mainController = (function (data, ui) {
             ui.showDropdownData(list);
         });
     });
-
-
 
     const id = localStorage.getItem("id");
 
@@ -206,9 +208,13 @@ const mainController = (function (data, ui) {
         });
     }
 
-    function init() {
+    function initHome() {
         data.loadData();
-      
+    }
+
+    return {
+        initHome,
+        //initSingle prbaciti sve ostalo iz if ovog ovde
     }
 
 })(dataModule, uiModule);
