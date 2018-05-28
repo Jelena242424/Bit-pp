@@ -1,13 +1,13 @@
 const dataModule = (function () {
 
     class Show {
-        constructor(name, image, id, summary = "", premiereDate = "", endDate = "") {
+        constructor(name, image, id, summary = "", seasons = "", cast = "") {
             this.name = name;
             this.image = image;
             this.id = id;
             this.summary = summary;
-            this.premiereDate = premiereDate;
-            this.endDate = endDate;
+            this.seasons = seasons;
+            this.cast = cast;
         }
     }
 
@@ -47,52 +47,23 @@ const dataModule = (function () {
             doneHandler(list);
         })
     };
-//http://api.tvmaze.com/shows/1?embed[]=episodes&embed[]=cast
+
 
     const fetchSingleShow = function (id, doneHandler) {
         $.ajax({
-            url: "http://api.tvmaze.com/shows/" + id + "?embed[]=seasons&embed[]=cast",
+            url: `http://api.tvmaze.com/shows/${id}?embed[]=seasons&embed[]=cast`,
             method: "GET"
         }).done(function(show) {
-            const showDetail = new Show(show.name, show.image.original, show.id, show.summary);
-
-            //const listOfSeasons = new Show(show._embedded.seasons);
-           // const listOfCasts = new Show();
-
+            const showDetail = new Show(show.name, show.image.original, show.id, show.summary, show._embedded.seasons, show._embedded.cast);
+            
             doneHandler(showDetail);
         });
 
     }
 
-    const seasonsData = function (id, doneHandler) {
-        $.ajax({
-            url:"http://api.tvmaze.com/shows/" + id + "/seasons",
-            method: "GET"
-        }).done(function (seasons){
-            const listOfSeasons = seasons;
-
-            doneHandler(listOfSeasons);
-
-        })
-    }
-
-    const castData = function (id, doneHandler) {
-        $.ajax({
-            url: "http://api.tvmaze.com/shows/" + id + "/cast",
-            method: "GET"
-        }).done(function (cast){
-            const listOfCasts = cast;
-
-            doneHandler(listOfCasts);
-        })
-    }
-
-
     return {
         loadData,
         fetchSingleShow,
-        seasonsData,
-        castData,
         searchData
     }
 
@@ -120,7 +91,8 @@ const uiModule = (function () {
         $displayShowDetail.html(singleShowInfo.summary);
     }
 
-    const loadSeasonsInfo = function(listOfSeasons) {
+    const loadSeasonsInfo = function(singleShowInfo) {
+        const listOfSeasons = singleShowInfo.seasons;
         const $seasonsNumber = $(".season-number");
         $seasonsNumber.text(`Seasons (${listOfSeasons.length})`);
         const $displaySeasonDates = $(".seasons-dates");
@@ -135,7 +107,8 @@ const uiModule = (function () {
         $displaySeasonDates.html(showSeasonDatesOnPage);
     }
 
-    const loadCast = function(listOfCasts) {
+    const loadCast = function(singleShowInfo) {
+        const listOfCasts = singleShowInfo.cast;
         const $displayCast = $(".show-cast");
         let showCastOnPage = "";
         for (let i = 0; i < listOfCasts.length; i++) {
@@ -159,6 +132,19 @@ const uiModule = (function () {
         $dropdownMenu.html(showSearch);
     }
 
+    $(document).on('click', ".show-card, .dropdown-item", function () {
+        // get id
+        let $idValue = $(this).data("id");
+        if (!$idValue) {
+            return;
+        }
+        // set to ls u data
+        localStorage.setItem("id", $idValue);
+
+        // redirect to single page
+        window.open('/showInfoPage.html', "_self");
+    });
+
     return {
         showData,
         loadInfoPage,
@@ -170,18 +156,6 @@ const uiModule = (function () {
 
 
 const mainController = (function (data, ui) {
-    $(document).on('click', ".show-card, .dropdown-item", function () {
-        // get id
-        let $idValue = $(this).data("id");
-        if (!$idValue) {
-            return;
-        }
-        // set to ls u data
-        localStorage.setItem("id", $idValue);
-
-        // redirect to single page
-        window.open('/showInfoPage.html');
-    });
 
     $("#search-field").on("keyup", function(){
         data.searchData(list => {
@@ -192,29 +166,29 @@ const mainController = (function (data, ui) {
     const id = localStorage.getItem("id");
 
     if(id) {
-        data.fetchSingleShow(id, singleShowInfo => {
-            ui.loadInfoPage(singleShowInfo);
-        });
-        data.seasonsData(id, listOfSeasons => {
-            ui.loadSeasonsInfo(listOfSeasons);
-        }); 
-        data.castData(id, listOfCasts => {
-            ui.loadCast(listOfCasts);
-        });
-        localStorage.removeItem("id");
-    } else {
-        data.loadData(showList => {
-            ui.showData(showList);
-        });
+       initSingle();
+    } else { 
+        initHome();
     }
 
     function initHome() {
-        data.loadData();
+        data.loadData(showList => {
+            ui.showData(showList);
+        });
+    };
+
+    function initSingle() {
+        data.fetchSingleShow(id, singleShowInfo => {
+            ui.loadInfoPage(singleShowInfo);
+            ui.loadSeasonsInfo(singleShowInfo);
+            ui.loadCast(singleShowInfo);
+        });
+        localStorage.removeItem("id");
     }
 
     return {
         initHome,
-        //initSingle prbaciti sve ostalo iz if ovog ovde
+        initSingle
     }
 
 })(dataModule, uiModule);
