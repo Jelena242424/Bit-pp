@@ -165,11 +165,11 @@ const mainController = (function (data, ui) {
 
     const id = localStorage.getItem("id");
 
-    if(id) {
-       initSingle();
-    } else { 
-        initHome();
-    }
+    // // if(id) {
+    //    initSingle();
+    // } else { 
+    //     initHome();
+    // }
 
     function initHome() {
         data.loadData(showList => {
@@ -183,7 +183,7 @@ const mainController = (function (data, ui) {
             ui.loadSeasonsInfo(singleShowInfo);
             ui.loadCast(singleShowInfo);
         });
-        localStorage.removeItem("id");
+        // localStorage.removeItem("id");
     }
 
     return {
